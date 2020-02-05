@@ -27,6 +27,12 @@ Route::get( '/auth0/callback', '\Auth0\Login\Auth0Controller@callback' )->name( 
 Route::get( '/login', 'Auth\Auth0IndexController@login' )->name( 'login' );
 Route::get( '/logout', 'Auth\Auth0IndexController@logout' )->name( 'logout' )->middleware('auth');
 
+Route::resource('contacts', 'ContactController');
+
+Route::get('/home', function() {
+   return view('home');
+});
+
 Route::get('role',[
    'middleware' => 'Role:user',
    'uses' => 'TestController@index',
@@ -59,4 +65,3 @@ Route::get('sendbasicemail','MailController@basic_email');
 Route::get('sendhtmlemail','MailController@html_email');
 Route::get('sendattachmentemail','MailController@attachment_email');
 
-Route::resource('contacts', 'ContactController');
