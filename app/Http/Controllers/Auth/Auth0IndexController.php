@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -14,6 +15,9 @@ class Auth0IndexController extends Controller
      */
     public function login()
     {
+        if (Auth::check()) {
+            return redirect('/home');
+        }
         $authorize_params = [
             'scope' => 'openid profile email',
         ];

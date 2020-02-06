@@ -7,6 +7,8 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
 	<link href="{{ asset('css/simple-line-icons/css/simple-line-icons.css') }}" rel="stylesheet">
+	<link href="{{ asset('css/stylish-portfolio.css') }}" rel="stylesheet" type="text/css" />
+	<link href="{{ asset('css/layout.css') }}" rel="stylesheet" type="text/css" />
 	<link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css" />
 </head>
 

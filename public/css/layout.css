@@ -1,0 +1,14 @@
+header {
+    position: absolute;
+    z-index: 1000;
+    height: 60px;
+    width: 100%;
+    background-color: #fff;
+    padding: 15px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.th-margin {
+    margin-top: 60px;
+}
