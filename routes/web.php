@@ -27,11 +27,12 @@ Route::get( '/auth0/callback', '\Auth0\Login\Auth0Controller@callback' )->name( 
 Route::get( '/login', 'Auth\Auth0IndexController@login' )->name( 'login' );
 Route::get( '/logout', 'Auth\Auth0IndexController@logout' )->name( 'logout' )->middleware('auth');
 
-Route::resource('contacts', 'ContactController');
+Route::resource('contacts', 'ContactController', ['middleware' => 'auth']);
 
-Route::get('/home', function() {
-   return view('home');
-});
+Route::get('/home', [
+   'middleware' => 'auth',
+   'uses' => 'HomeController@index',
+]);
 
 Route::get('role',[
    'middleware' => 'Role:user',
