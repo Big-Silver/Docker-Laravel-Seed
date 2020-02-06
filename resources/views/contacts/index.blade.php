@@ -18,7 +18,7 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <td>ID</td>
+                        <td>No</td>
                         <td>Name</td>
                         <td>Email</td>
                         <td>Job Title</td>
@@ -28,28 +28,36 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($contacts as $contact)
-                    <tr>
-                        <td>{{$contact->id}}</td>
-                        <td>{{$contact->first_name}} {{$contact->last_name}}</td>
-                        <td>{{$contact->email}}</td>
-                        <td>{{$contact->job_title}}</td>
-                        <td>{{$contact->city}}</td>
-                        <td>{{$contact->country}}</td>
-                        <td>
-                            <a href="{{ route('contacts.edit',$contact->id)}}" class="btn btn-primary">Edit</a>
-                        </td>
-                        <td>
-                            <form action="{{ route('contacts.destroy', $contact->id)}}" method="post">
-                                @csrf
-                                @method('DELETE')
-                                <button class="btn btn-danger" type="submit">Delete</button>
-                            </form>
-                        </td>
-                    </tr>
-                    @endforeach
+                    @if(!empty($contacts) && $contacts->count())
+                        @foreach($contacts as $contact)
+                            <tr>
+                                <td>{{($contacts->currentPage() - 1) * $contacts->perPage() + $loop->iteration}}</td>
+                                <td>{{$contact->first_name}} {{$contact->last_name}}</td>
+                                <td>{{$contact->email}}</td>
+                                <td>{{$contact->job_title}}</td>
+                                <td>{{$contact->city}}</td>
+                                <td>{{$contact->country}}</td>
+                                <td>
+                                    <a href="{{ route('contacts.edit',$contact->id)}}" class="btn btn-primary">Edit</a>
+                                </td>
+                                <td>
+                                    <form action="{{ route('contacts.destroy', $contact->id)}}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-danger" type="submit">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    @else
+                        <tr>
+                            <td colspan="8">There are no data.</td>
+                        </tr>
+                    @endif
                 </tbody>
             </table>
+
+            {!! $contacts->links() !!}
         </div>
     </div>
 </div>
