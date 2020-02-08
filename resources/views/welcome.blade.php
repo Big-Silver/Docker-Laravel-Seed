@@ -1,6 +1,6 @@
-@extends('base')
+@extends('layouts.app')
 
-@section('main')
+@section('content')
 <div class="masthead d-flex">
     <div class="container text-center my-auto">
         <h1 class="mb-1">Stylish Portfolio</h1>
