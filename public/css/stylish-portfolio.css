@@ -85,7 +85,7 @@ h1, h2, h3, h4, h5, h6 {
     position: relative;
     display: table;
     width: 100%;
-    height: calc(100vh - 55px);
+    height: 100vh;
     padding-top: 8rem;
     padding-bottom: 8rem;
     background: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.1) 100%), url("../img/bg-masthead.jpg");
@@ -102,7 +102,7 @@ h1, h2, h3, h4, h5, h6 {
 
 @media (min-width: 992px) {
     .masthead {
-        height: calc(100vh - 55px);
+        height: 100vh;
     }
     .masthead h1 {
         font-size: 5.5rem;
@@ -178,8 +178,8 @@ h1, h2, h3, h4, h5, h6 {
     position: fixed;
     right: 15px;
     top: 15px;
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 45px;
     text-align: center;
     color: #fff;
     background: rgba(52, 58, 64, 0.5);
