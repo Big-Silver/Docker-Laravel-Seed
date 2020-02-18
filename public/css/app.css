@@ -10884,15 +10884,23 @@ a.text-dark:focus {
   }
 }
 
-nav {
-  position: absolute;
+.margin-nav {
+  margin-top: 70px;
+}
+
+nav.navbar {
+  position: absolute !important;
   z-index: 99999;
   background: #1d809f;
   width: 100%;
   height: 70px;
 }
 
-nav a {
+nav.navbar a {
   color: #ffffff;
+}
+
+nav.navbar .navbar-nav .dropdown-item {
+  color: #212529;
 }
 

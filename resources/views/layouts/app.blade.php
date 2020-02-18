@@ -19,7 +19,6 @@
     <link href="{{ asset('css/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/simple-line-icons/css/simple-line-icons.css') }}" rel="stylesheet">
 	<link href="{{ asset('css/stylish-portfolio.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('css/layout.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
