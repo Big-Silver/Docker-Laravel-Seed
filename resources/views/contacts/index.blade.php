@@ -14,6 +14,7 @@
             <h1 class="display-3">Contacts</h1>
             <div>
                 <a style="margin: 19px;" href="{{ route('contacts.create')}}" class="btn btn-primary">New contact</a>
+                <a style="margin: 19px;" href="{{ route('home')}}" class="btn btn-light">Home page</a>
             </div>
             <table class="table table-striped">
                 <thead>
@@ -38,10 +39,10 @@
                                 <td>{{$contact->city}}</td>
                                 <td>{{$contact->country}}</td>
                                 <td>
-                                    <a href="{{ route('contacts.edit',$contact->id)}}" class="btn btn-primary">Edit</a>
+                                    <a href="{{ route('contacts.edit', $contact->id).'?page=' . $contacts->currentPage()}}" class="btn btn-primary">Edit</a>
                                 </td>
                                 <td>
-                                    <form action="{{ route('contacts.destroy', $contact->id)}}" method="post">
+                                    <form action="{{ route('contacts.destroy', $contact->id).'?page=' . $contacts->currentPage()}}" method="post">
                                         @csrf
                                         @method('DELETE')
                                         <button class="btn btn-danger" type="submit">Delete</button>

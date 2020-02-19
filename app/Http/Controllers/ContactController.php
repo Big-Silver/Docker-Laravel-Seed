@@ -69,12 +69,14 @@ class ContactController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
         $contact = Contact::find($id);
+        $contact->page = $request->get('page');
         return view('contacts.edit', compact('contact'));
     }
 
@@ -102,20 +104,21 @@ class ContactController extends Controller
         $contact->country = $request->get('country');
         $contact->save();
 
-        return redirect('/contacts')->with('success', 'Contact updated!');
+        return redirect('/contacts?page=' . $request->get('page'))->with('success', 'Contact updated!');
     }
 
     /**
      * Remove the specified resource from storage.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
         $contact = Contact::find($id);
         $contact->delete();
 
-        return redirect('/contacts')->with('success', 'Contact deleted!');
+        return redirect('/contacts?page=' . $request->get('page'))->with('success', 'Contact deleted!');
     }
 }

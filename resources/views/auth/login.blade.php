@@ -65,6 +65,7 @@
                             </div>
                         </div>
                     </form>
+                    <example-component></example-component>
                 </div>
             </div>
         </div>
