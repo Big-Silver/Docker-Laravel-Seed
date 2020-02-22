@@ -64,7 +64,8 @@ class Kernel extends HttpKernel
         // 'Role' => \App\HTTP\Middleware\RoleMiddleware::class,
         'terminate' => \App\HTTP\Middleware\TerminateMiddleware::class,
         'role' => \Spatie\Permission\Middlewares\RoleMiddleware::class,
-	    'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
+        'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
+        'jwt.verify' => \App\Http\Middleware\JwtMiddleware::class,
     ];
 
     /**
