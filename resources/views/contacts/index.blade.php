@@ -12,9 +12,9 @@
         </div>
         <div class="col-sm-12">
             <h1 class="display-3">Contacts</h1>
-            <div>
-                <a style="margin: 19px;" href="{{ route('contacts.create')}}" class="btn btn-primary">New contact</a>
-                <a style="margin: 19px;" href="{{ route('home')}}" class="btn btn-light">Home page</a>
+            <div class="d-flex justify-content-between my-3">
+                <a href="{{ route('contacts.create')}}" class="btn btn-primary">New contact</a>
+                <a href="{{ route('home')}}" class="btn btn-light">Back</a>
             </div>
             <table class="table table-striped">
                 <thead>

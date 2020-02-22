@@ -46,7 +46,7 @@
                 <input type="text" class="form-control" name="job_title" value={{ $contact->job_title }} />
             </div>
             <button type="submit" class="btn btn-primary">Update</button>
-            <a href="{{'/contacts'.'?page=' . $contact->page}}" class="btn btn-light">Cancel</a>
+            <a href="{{'/contacts'.'?page=' . $contact->page}}" class="btn btn-light ml-3">Cancel</a>
         </form>
     </div>
 </div>

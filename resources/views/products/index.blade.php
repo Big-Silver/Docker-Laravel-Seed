@@ -1,27 +1,26 @@
 @extends('layouts.app')
 
-
 @section('content')
+<div class="container">
     <div class="row">
         <div class="col-lg-12 margin-nav">
-            <div class="pull-left">
+            <div class="pull-left mt-5">
                 <h2>Products</h2>
             </div>
-            <div class="pull-right">
+            <div class="d-flex justify-content-between my-3">
                 @can('product-create')
-                <a class="btn btn-success" href="{{ route('products.create') }}"> Create New Product</a>
+                <a class="btn btn-primary" href="{{ route('products.create') }}"> Create New Product</a>
+                <a class="btn btn-light" href="{{ route('home') }}">Back</a>
                 @endcan
             </div>
         </div>
     </div>
-
 
     @if ($message = Session::get('success'))
         <div class="alert alert-success">
             <p>{{ $message }}</p>
         </div>
     @endif
-
 
     <table class="table table-bordered">
         <tr>
@@ -54,6 +53,6 @@
 	    @endforeach
     </table>
 
-
     {!! $products->links() !!}
+</div>
 @endsection
