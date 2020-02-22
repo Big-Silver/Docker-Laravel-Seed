@@ -30,4 +30,9 @@ Route::resource('/', 'WelcomeController');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('contacts', 'ContactController', ['middleware' => 'auth']);
+Route::group(['middleware' => ['auth']], function() {
+    Route::resource('contacts', 'ContactController');
+    Route::resource('roles','RoleController');
+    Route::resource('users','UserController');
+    Route::resource('products','ProductController');
+});

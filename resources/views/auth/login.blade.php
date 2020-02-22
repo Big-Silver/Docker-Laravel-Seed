@@ -64,8 +64,7 @@
                                 @endif
                             </div>
                         </div>
-                    </form>
-                    <example-component></example-component>
+                    </form>                  
                 </div>
             </div>
         </div>
