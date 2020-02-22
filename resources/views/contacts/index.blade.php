@@ -5,7 +5,8 @@
     <div class="row">
         <div class="col-sm-12 margin-nav">
             @if(session()->get('success'))
-            <div class="alert alert-success">
+            <div class="alert alert-success alert-block">
+                <button type="button" class="close" data-dismiss="alert">×</button>
                 {{ session()->get('success') }}
             </div>
             @endif
@@ -30,30 +31,30 @@
                 </thead>
                 <tbody>
                     @if(!empty($contacts) && $contacts->count())
-                        @foreach($contacts as $contact)
-                            <tr>
-                                <td>{{($contacts->currentPage() - 1) * $contacts->perPage() + $loop->iteration}}</td>
-                                <td>{{$contact->first_name}} {{$contact->last_name}}</td>
-                                <td>{{$contact->email}}</td>
-                                <td>{{$contact->job_title}}</td>
-                                <td>{{$contact->city}}</td>
-                                <td>{{$contact->country}}</td>
-                                <td>
-                                    <a href="{{ route('contacts.edit', $contact->id).'?page=' . $contacts->currentPage()}}" class="btn btn-primary">Edit</a>
-                                </td>
-                                <td>
-                                    <form action="{{ route('contacts.destroy', $contact->id).'?page=' . $contacts->currentPage()}}" method="post">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="btn btn-danger" type="submit">Delete</button>
-                                    </form>
-                                </td>
-                            </tr>
-                        @endforeach
+                    @foreach($contacts as $contact)
+                    <tr>
+                        <td>{{($contacts->currentPage() - 1) * $contacts->perPage() + $loop->iteration}}</td>
+                        <td>{{$contact->first_name}} {{$contact->last_name}}</td>
+                        <td>{{$contact->email}}</td>
+                        <td>{{$contact->job_title}}</td>
+                        <td>{{$contact->city}}</td>
+                        <td>{{$contact->country}}</td>
+                        <td>
+                            <a href="{{ route('contacts.edit', $contact->id).'?page=' . $contacts->currentPage()}}" class="btn btn-primary">Edit</a>
+                        </td>
+                        <td>
+                            <form action="{{ route('contacts.destroy', $contact->id).'?page=' . $contacts->currentPage()}}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-danger" type="submit">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    @endforeach
                     @else
-                        <tr>
-                            <td colspan="8">There are no data.</td>
-                        </tr>
+                    <tr>
+                        <td colspan="8">There are no data.</td>
+                    </tr>
                     @endif
                 </tbody>
             </table>

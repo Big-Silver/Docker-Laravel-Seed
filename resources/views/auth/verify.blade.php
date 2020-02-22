@@ -9,9 +9,10 @@
 
                 <div class="card-body">
                     @if (session('resent'))
-                        <div class="alert alert-success" role="alert">
-                            {{ __('A fresh verification link has been sent to your email address.') }}
-                        </div>
+                    <div class="alert alert-success alert-block" role="alert">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        {{ __('A fresh verification link has been sent to your email address.') }}
+                    </div>
                     @endif
 
                     {{ __('Before proceeding, please check your email for a verification link.') }}

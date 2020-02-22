@@ -7,7 +7,8 @@
 			<h1 class="display-3">Add a contact</h1>
 			<div>
 				@if ($errors->any())
-				<div class="alert alert-danger">
+				<div class="alert alert-danger alert-block">
+					<button type="button" class="close" data-dismiss="alert">×</button>
 					<ul>
 						@foreach ($errors->all() as $error)
 						<li>{{ $error }}</li>

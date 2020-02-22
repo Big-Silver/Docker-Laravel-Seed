@@ -50,12 +50,11 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                         </li>
-                        @if (Route::has('register'))
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                         </li>
-                        @endif
-                        @else
+                        @endguest
+                        @auth
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }} <span class="caret"></span>
@@ -71,15 +70,17 @@
                                 </form>
                             </div>
                         </li>
-                        @endguest
+                        @endauth
                     </ul>
                 </div>
             </div>
         </nav>
 
+        @auth
         <aside class="main-sidebar">
             <section class="sidebar">
                 <ul class="sidebar-menu tree">
+                    @if(Auth::user()->hasRole('Admin'))
                     <li class="treeview">
                         <a href="{{ route('users.index') }}">
                             <i class="fa fa-files-o"></i>
@@ -101,6 +102,7 @@
                             <span>Manage Product</span>
                         </a>
                     </li>
+                    @endif
                     <li class="treeview">
                         <a href="{{ route('contacts.index') }}">
                             <i class="fa fa-files-o"></i>
@@ -110,8 +112,9 @@
                 </ul>
             </section>
         </aside>
+        @endauth
 
-        <main class="content-wrapper">
+        <main class="{{Auth::check() ? 'content-wrapper' : ''}}">
             @yield('content')
         </main>
     </div>

@@ -17,9 +17,10 @@
     </div>
 
     @if ($message = Session::get('success'))
-        <div class="alert alert-success">
-            <p>{{ $message }}</p>
-        </div>
+    <div class="alert alert-success alert-block">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <p>{{ $message }}</p>
+    </div>
     @endif
 
     <table class="table table-bordered">
@@ -29,12 +30,12 @@
             <th>Details</th>
             <th width="280px">Action</th>
         </tr>
-	    @foreach ($products as $product)
-	    <tr>
-	        <td>{{ ++$i }}</td>
-	        <td>{{ $product->name }}</td>
-	        <td>{{ $product->detail }}</td>
-	        <td>
+        @foreach ($products as $product)
+        <tr>
+            <td>{{ ++$i }}</td>
+            <td>{{ $product->name }}</td>
+            <td>{{ $product->detail }}</td>
+            <td>
                 <form action="{{ route('products.destroy',$product->id) }}" method="POST">
                     <a class="btn btn-info" href="{{ route('products.show',$product->id) }}">Show</a>
                     @can('product-edit')
@@ -48,9 +49,9 @@
                     <button type="submit" class="btn btn-danger">Delete</button>
                     @endcan
                 </form>
-	        </td>
-	    </tr>
-	    @endforeach
+            </td>
+        </tr>
+        @endforeach
     </table>
 
     {!! $products->links() !!}
