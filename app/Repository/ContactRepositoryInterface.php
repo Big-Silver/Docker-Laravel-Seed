@@ -2,11 +2,13 @@
 
 namespace App\Repository;
 
-interface UserRepositoryInterface
+interface ContactRepositoryInterface
 {
     public function index();
 
     public function all();
 
     public function getById($id);
+
+    public function getByEmail($email);
 }

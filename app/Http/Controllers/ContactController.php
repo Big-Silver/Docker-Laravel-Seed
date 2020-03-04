@@ -3,10 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Repository\ContactRepositoryInterface;
 use App\Contact;
 
 class ContactController extends Controller
 {
+    private $contactRepository;
+    
+    function __construct(ContactRepositoryInterface $contactRepository)
+    {
+        $this->contactRepository = $contactRepository;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,8 +22,7 @@ class ContactController extends Controller
      */
     public function index()
     {
-        // $contacts = Contact::all();
-        $contacts = Contact::paginate(10);
+        $contacts = $this->contactRepository->index()->paginate(10);
         return view('contacts.index', compact('contacts'));
     }
 
@@ -38,9 +45,9 @@ class ContactController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'first_name'=>'required',
-            'last_name'=>'required',
-            'email'=>'required'
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required'
         ]);
 
         $contact = new Contact([
@@ -75,7 +82,7 @@ class ContactController extends Controller
      */
     public function edit(Request $request, $id)
     {
-        $contact = Contact::find($id);
+        $contact = $this->contactRepository->getById($id);
         $contact->page = $request->get('page');
         return view('contacts.edit', compact('contact'));
     }
@@ -90,12 +97,12 @@ class ContactController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'first_name'=>'required',
-            'last_name'=>'required',
-            'email'=>'required'
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required'
         ]);
 
-        $contact = Contact::find($id);
+        $contact = $this->contactRepository->getById($id);
         $contact->first_name =  $request->get('first_name');
         $contact->last_name = $request->get('last_name');
         $contact->email = $request->get('email');
@@ -116,7 +123,7 @@ class ContactController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        $contact = Contact::find($id);
+        $contact = $this->contactRepository->getById($id);
         $contact->delete();
 
         return redirect('/contacts?page=' . $request->get('page'))->with('success', 'Contact deleted!');

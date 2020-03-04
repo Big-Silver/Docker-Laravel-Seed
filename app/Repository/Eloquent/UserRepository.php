@@ -8,7 +8,7 @@ use App\Repository\UserRepositoryInterface;
 class UserRepository implements UserRepositoryInterface
 {
     public function index() {
-        return User::orderBy('id', 'DESC');
+        return User::orderBy('id', 'ASC');
     }
 
     public function all()
@@ -19,9 +19,5 @@ class UserRepository implements UserRepositoryInterface
     public function getById($id)
     {
         return User::find($id);
-    }
-
-    public function getByEmail($email) {
-        return User::where('email'. $email)->get();
     }
 }
