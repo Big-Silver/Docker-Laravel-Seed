@@ -7,7 +7,8 @@ use App\Repository\ContactRepositoryInterface;
 
 class ContactRepository implements ContactRepositoryInterface
 {
-    public function index() {
+    public function index()
+    {
         return Contact::orderBy('id', 'ASC');
     }
 
@@ -21,7 +22,8 @@ class ContactRepository implements ContactRepositoryInterface
         return Contact::find($id);
     }
 
-    public function getByEmail($email) {
+    public function getByEmail($email)
+    {
         return Contact::where('email'. $email)->get();
     }
 }

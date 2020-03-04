@@ -61,9 +61,7 @@ class ProductController extends Controller
             'detail' => 'required',
         ]);
 
-
-        Product::create($request->all());
-
+        $this->productRepository->createProduct($request);
 
         return redirect()->route('products.index')
             ->with('success', 'Product created successfully.');

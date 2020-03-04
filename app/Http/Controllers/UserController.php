@@ -6,8 +6,6 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repository\UserRepositoryInterface;
 use App\User;
-use Spatie\Permission\Models\Role;
-use DB;
 use Hash;
 
 class UserController extends Controller
@@ -48,7 +46,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        $roles = Role::pluck('name', 'name')->all();
+        $roles = $this->userRepository->getRoleName();
         return view('users.create', compact('roles'));
     }
 
@@ -104,7 +102,7 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = $this->userRepository->getById($id);
-        $roles = Role::pluck('name', 'name')->all();
+        $roles = $this->userRepository->getRoleName();
         $userRole = $user->roles->pluck('name', 'name')->all();
 
 
@@ -138,7 +136,7 @@ class UserController extends Controller
 
         $user = $this->userRepository->getById($id);
         $user->update($input);
-        DB::table('model_has_roles')->where('model_id', $id)->delete();
+        $this->userRepository->removeRoleById($id);
 
         $user->assignRole($request->input('roles'));
 

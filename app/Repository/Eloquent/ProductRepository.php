@@ -7,7 +7,8 @@ use App\Repository\ProductRepositoryInterface;
 
 class ProductRepository implements ProductRepositoryInterface
 {
-    public function index() {
+    public function index()
+    {
         return Product::orderBy('id', 'ASC');
     }
 
@@ -19,5 +20,10 @@ class ProductRepository implements ProductRepositoryInterface
     public function getById($id)
     {
         return Product::find($id);
+    }
+
+    public function createProduct($request)
+    {
+        Product::create($request->all());
     }
 }

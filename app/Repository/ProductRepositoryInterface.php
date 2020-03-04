@@ -9,4 +9,6 @@ interface ProductRepositoryInterface
     public function all();
 
     public function getById($id);
+
+    public function createProduct($request);
 }
