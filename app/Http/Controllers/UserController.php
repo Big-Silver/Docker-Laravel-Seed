@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Repository\UserRepositoryInterface;
 use App\User;
 use Spatie\Permission\Models\Role;
 use DB;
@@ -11,17 +12,20 @@ use Hash;
 
 class UserController extends Controller
 {
+    private $userRepository;
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    function __construct()
+    function __construct(UserRepositoryInterface $userRepository)
     {
-         $this->middleware('permission:user-list|user-create|user-edit|user-delete', ['only' => ['index','store']]);
-         $this->middleware('permission:user-create', ['only' => ['create','store']]);
-         $this->middleware('permission:user-edit', ['only' => ['edit','update']]);
-         $this->middleware('permission:user-delete', ['only' => ['destroy']]);
+        $this->middleware('permission:user-list|user-create|user-edit|user-delete', ['only' => ['index', 'store']]);
+        $this->middleware('permission:user-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:user-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:user-delete', ['only' => ['destroy']]);
+
+        $this->userRepository = $userRepository;
     }
 
     /**
@@ -31,8 +35,8 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $data = User::orderBy('id','DESC')->paginate(5);
-        return view('users.index',compact('data'))
+        $data = $this->userRepository->index()->paginate(5);
+        return view('users.index', compact('data'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
@@ -44,8 +48,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        $roles = Role::pluck('name','name')->all();
-        return view('users.create',compact('roles'));
+        $roles = Role::pluck('name', 'name')->all();
+        return view('users.create', compact('roles'));
     }
 
 
@@ -74,7 +78,7 @@ class UserController extends Controller
 
 
         return redirect()->route('users.index')
-                        ->with('success','User created successfully');
+            ->with('success', 'User created successfully');
     }
 
 
@@ -86,8 +90,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::find($id);
-        return view('users.show',compact('user'));
+        $user = $this->userRepository->getById($id);
+        return view('users.show', compact('user'));
     }
 
 
@@ -99,12 +103,12 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user = User::find($id);
-        $roles = Role::pluck('name','name')->all();
-        $userRole = $user->roles->pluck('name','name')->all();
+        $user = $this->userRepository->getById($id);
+        $roles = Role::pluck('name', 'name')->all();
+        $userRole = $user->roles->pluck('name', 'name')->all();
 
 
-        return view('users.edit',compact('user','roles','userRole'));
+        return view('users.edit', compact('user', 'roles', 'userRole'));
     }
 
 
@@ -119,27 +123,27 @@ class UserController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
-            'email' => 'required|email|unique:users,email,'.$id,
+            'email' => 'required|email|unique:users,email,' . $id,
             'password' => 'same:confirm-password',
             'roles' => 'required'
         ]);
 
         $input = $request->all();
-        if(!empty($input['password'])){ 
+        if (!empty($input['password'])) {
             $input['password'] = Hash::make($input['password']);
-        }else{
-            $input = array_except($input,array('password'));    
+        } else {
+            $input = array_except($input, array('password'));
         }
 
 
-        $user = User::find($id);
+        $user = $this->userRepository->getById($id);
         $user->update($input);
-        DB::table('model_has_roles')->where('model_id',$id)->delete();
+        DB::table('model_has_roles')->where('model_id', $id)->delete();
 
         $user->assignRole($request->input('roles'));
 
         return redirect()->route('users.index')
-                        ->with('success','User updated successfully');
+            ->with('success', 'User updated successfully');
     }
 
 
@@ -151,8 +155,8 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        User::find($id)->delete();
+        $this->userRepository->getById($id)->delete();
         return redirect()->route('users.index')
-                        ->with('success','User deleted successfully');
+            ->with('success', 'User deleted successfully');
     }
 }
