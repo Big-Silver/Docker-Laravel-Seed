@@ -14,7 +14,7 @@
         <div class="col-sm-12">
             <h1 class="display-3">Contacts</h1>
             <div class="d-flex justify-content-between my-3">
-                <a href="{{ route('contacts.create')}}" class="btn btn-primary">New contact</a>
+                <a href="{{ route('contacts.create').'?page=' . $contacts->currentPage()}}" class="btn btn-primary">New contact</a>
                 <a href="{{ route('home')}}" class="btn btn-light">Back</a>
             </div>
             <table class="table table-striped">

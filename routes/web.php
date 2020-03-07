@@ -36,3 +36,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('users','UserController');
     Route::resource('products','ProductController');
 });
+
+Route::get('/file', 'FileController@index')->name('file');
+Route::post('file/upload', 'FileController@store')->name('file.upload');
+Route::post('upload', 'FileController@upload')->name('upload');
