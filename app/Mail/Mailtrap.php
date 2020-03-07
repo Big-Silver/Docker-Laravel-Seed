@@ -10,15 +10,16 @@ use Illuminate\Queue\SerializesModels;
 class Mailtrap extends Mailable
 {
     use Queueable, SerializesModels;
+    public $email;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($email)
     {
-        //
+        $this->email = $email;
     }
 
     /**
@@ -32,7 +33,8 @@ class Mailtrap extends Mailable
             ->subject('Mailtrap Confirmation')
             ->markdown('mails.email')
             ->with([
-                'name' => 'New Mailtrap User',
+                'name' => $this->email->name,
+                'detail' => $this->email->detail,
                 'link' => 'https://mailtrap.io/inboxes'
             ]);
     }

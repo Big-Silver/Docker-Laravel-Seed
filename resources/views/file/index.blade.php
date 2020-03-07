@@ -6,6 +6,7 @@
         <div class="col-md-8 margin-nav">
             @if(session()->get('message'))
             <div class="alert alert-success">
+                <button type="button" class="close" data-dismiss="alert">×</button>
                 {{ session()->get('message') }}
             </div>
             @endif
@@ -59,6 +60,7 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Upload') }}
                                 </button>
+                                <a href="/home" class="btn btn-light ml-3">Back</a>
                             </div>
                         </div>
                     </form>

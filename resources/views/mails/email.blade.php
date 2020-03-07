@@ -1,11 +1,12 @@
 @component('mail::message')
-Hello **{{$name}}**,  {{-- use double space for line break --}}
-Thank you for choosing Mailtrap!
+Hello Mailtrap team,  {{-- use double space for line break --}}
+{{$detail}}
 
 Click below to start working right now
 @component('mail::button', ['url' => $link])
 Go to your inbox
 @endcomponent
 Sincerely,  
-Mailtrap team.
+
+From **{{$name}}**.
 @endcomponent
