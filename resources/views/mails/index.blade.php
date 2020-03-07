@@ -27,15 +27,30 @@
                         @csrf
                         <div class="form-group">
                             <label for="first_name">{{__('common.firstName')}}:</label>
-                            <input type="text" class="form-control" name="first_name" />
+                            <input type="text" class="form-control @error('first_name') is-invalid @enderror" name="first_name" required />
+                            @error('first_name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="last_name">{{__('common.lastName')}}:</label>
-                            <input type="text" class="form-control" name="last_name" />
+                            <input type="text" class="form-control @error('last_name') is-invalid @enderror" name="last_name" required />
+                            @error('last_name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <strong>{{__('common.detail')}}:</strong>
-                            <textarea class="form-control" name="detail" placeholder="Detail"></textarea>
+                            <textarea class="form-control @error('detail') is-invalid @enderror" name="detail" placeholder="Detail" required></textarea>
+                            @error('detail')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
                         <button type="submit" class="btn btn-primary">{{__('common.sendEmail')}}</button>
                         <a href="/home" class="btn btn-light ml-3">{{__('common.cancel')}}</a>

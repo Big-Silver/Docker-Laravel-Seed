@@ -16959,7 +16959,12 @@ nav.navbar .navbar-nav ul {
   background: #1e282c;
 }
 
-.content-wrapper {
+#app {
+  position: relative;
+  min-height: 100%;
+}
+
+#app .content-wrapper {
   transition: transform 0.3s ease-in-out, margin 0.3s ease-in-out;
   margin-left: 230px;
   z-index: 820;
