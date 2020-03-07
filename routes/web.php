@@ -1,8 +1,5 @@
 <?php
 
-use App\Mail\Mailtrap;
-use Illuminate\Support\Facades\Mail;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,11 +26,19 @@ use Illuminate\Support\Facades\Mail;
 
 Auth::routes();
 
-Route::resource('/', 'WelcomeController');
+Route::group([
+    'prefix' => LaravelLocalization::setLocale(),
+    'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
+],
+    function () {
+        Route::resource('/', 'WelcomeController');
+        Route::get('/home', 'HomeController@index')->name('home');
+});
 
-Route::get('/home', 'HomeController@index')->name('home');
-
-Route::group(['middleware' => ['auth']], function () {
+Route::group([
+    'prefix' => LaravelLocalization::setLocale(),
+    'middleware' => [ 'auth', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
+], function () {
     Route::resource('contacts', 'ContactController');
     Route::resource('roles', 'RoleController');
     Route::resource('users', 'UserController');

@@ -71,6 +71,22 @@
                             </div>
                         </li>
                         @endauth
+                        <li class="nav-item dropdown">
+                            <a id="localDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ LaravelLocalization::getCurrentLocaleName() }}
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="localDropdown">
+                                <ul>
+                                    @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                                    <li>
+                                        <a class="dropdown-item" rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                                            {{ $properties['native'] }}
+                                        </a>
+                                    </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>

@@ -16866,6 +16866,11 @@ nav.navbar .navbar-nav .dropdown-item {
   color: #212529;
 }
 
+nav.navbar .navbar-nav ul {
+  list-style: none;
+  padding-left: 20px;
+}
+
 .sidebar-menu,
 .main-sidebar .user-panel,
 .sidebar-menu > li.header {
