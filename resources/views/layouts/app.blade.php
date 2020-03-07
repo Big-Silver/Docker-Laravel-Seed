@@ -109,6 +109,18 @@
                             <span>Manage Contact</span>
                         </a>
                     </li>
+                    <li class="treeview">
+                        <a href="{{ route('file') }}">
+                            <i class="fa fa-files-o"></i>
+                            <span>File Upload</span>
+                        </a>
+                    </li>
+                    <li class="treeview">
+                        <a href="{{ route('email') }}">
+                            <i class="fa fa-files-o"></i>
+                            <span>Contact</span>
+                        </a>
+                    </li>
                 </ul>
             </section>
         </aside>

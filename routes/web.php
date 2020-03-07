@@ -1,5 +1,8 @@
 <?php
 
+use App\Mail\Mailtrap;
+use Illuminate\Support\Facades\Mail;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,13 +33,16 @@ Route::resource('/', 'WelcomeController');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::group(['middleware' => ['auth']], function() {
+Route::group(['middleware' => ['auth']], function () {
     Route::resource('contacts', 'ContactController');
-    Route::resource('roles','RoleController');
-    Route::resource('users','UserController');
-    Route::resource('products','ProductController');
-});
+    Route::resource('roles', 'RoleController');
+    Route::resource('users', 'UserController');
+    Route::resource('products', 'ProductController');
 
-Route::get('/file', 'FileController@index')->name('file');
-Route::post('file/upload', 'FileController@store')->name('file.upload');
-Route::post('upload', 'FileController@upload')->name('upload');
+    Route::get('/file', 'FileController@index')->name('file');
+    Route::post('file/upload', 'FileController@store')->name('file.upload');
+    Route::post('upload', 'FileController@upload')->name('upload');
+
+    Route::get('/email', 'MailController@index')->name('email');
+    Route::post('/email/send', 'MailController@mail')->name('email.send');
+});

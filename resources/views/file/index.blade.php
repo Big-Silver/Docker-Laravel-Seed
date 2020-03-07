@@ -71,7 +71,6 @@
 
 @section('scripts')
 <script>
-    console.log('@@@@@@@@@@@@@@@@@@@@@@@@@ : ')
     var drop = new Dropzone('#file', {
         createImageThumbnails: false,
         addRemoveLinks: true,
