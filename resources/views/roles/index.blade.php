@@ -5,12 +5,12 @@
     <div class="row">
         <div class="col-lg-12 margin-nav">
             <div class="pull-left mt-5">
-                <h2>Role Management</h2>
+                <h2>{{__('common.manageRole')}}</h2>
             </div>
             <div class="d-flex justify-content-between my-3">
                 @can('role-create')
-                <a class="btn btn-primary" href="{{ route('roles.create') }}"> Create New Role</a>
-                <a class="btn btn-light" href="{{ route('home') }}">Back</a>
+                <a class="btn btn-primary" href="{{ route('roles.create') }}"> {{__('common.createRole')}}</a>
+                <a class="btn btn-light" href="{{ route('home') }}">{{__('common.back')}}</a>
                 @endcan
             </div>
         </div>
@@ -25,18 +25,18 @@
 
     <table class="table table-bordered">
         <tr>
-            <th>No</th>
-            <th>Name</th>
-            <th width="280px">Action</th>
+            <th>{{__('common.tableNo')}}</th>
+            <th>{{__('common.name')}}</th>
+            <th width="280px">{{__('common.actions')}}</th>
         </tr>
         @foreach ($roles as $key => $role)
         <tr>
             <td>{{ ++$i }}</td>
             <td>{{ $role->name }}</td>
             <td>
-                <a class="btn btn-info" href="{{ route('roles.show',$role->id) }}">Show</a>
+                <a class="btn btn-info" href="{{ route('roles.show',$role->id) }}">{{__('common.show')}}</a>
                 @can('role-edit')
-                <a class="btn btn-primary" href="{{ route('roles.edit',$role->id) }}">Edit</a>
+                <a class="btn btn-primary" href="{{ route('roles.edit',$role->id) }}">{{__('common.edit')}}</a>
                 @endcan
                 @can('role-delete')
                 {!! Form::open(['method' => 'DELETE','route' => ['roles.destroy', $role->id],'style'=>'display:inline']) !!}

@@ -9,8 +9,8 @@
             </div>
             <div class="d-flex justify-content-between my-3">
                 @can('product-create')
-                <a class="btn btn-primary" href="{{ route('products.create') }}"> Create New Product</a>
-                <a class="btn btn-light" href="{{ route('home') }}">Back</a>
+                <a class="btn btn-primary" href="{{ route('products.create') }}"> {{__('common.createProduct')}}</a>
+                <a class="btn btn-light" href="{{ route('home') }}">{{__('common.back')}}</a>
                 @endcan
             </div>
         </div>
@@ -25,10 +25,10 @@
 
     <table class="table table-bordered">
         <tr>
-            <th>No</th>
-            <th>Name</th>
-            <th>Details</th>
-            <th width="280px">Action</th>
+            <th>{{__('common.tableNo')}}</th>
+            <th>{{__('common.name')}}</th>
+            <th>{{__('common.detail')}}</th>
+            <th width="280px">{{__('common.actions')}}</th>
         </tr>
         @foreach ($products as $product)
         <tr>
@@ -37,16 +37,16 @@
             <td>{{ $product->detail }}</td>
             <td>
                 <form action="{{ route('products.destroy',$product->id) }}" method="POST">
-                    <a class="btn btn-info" href="{{ route('products.show',$product->id) }}">Show</a>
+                    <a class="btn btn-info" href="{{ route('products.show',$product->id) }}">{{__('common.show')}}</a>
                     @can('product-edit')
-                    <a class="btn btn-primary" href="{{ route('products.edit',$product->id) }}">Edit</a>
+                    <a class="btn btn-primary" href="{{ route('products.edit',$product->id) }}">{{__('common.edit')}}</a>
                     @endcan
 
 
                     @csrf
                     @method('DELETE')
                     @can('product-delete')
-                    <button type="submit" class="btn btn-danger">Delete</button>
+                    <button type="submit" class="btn btn-danger">{{__('common.delete')}}</button>
                     @endcan
                 </form>
             </td>

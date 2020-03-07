@@ -12,21 +12,21 @@
             @endif
         </div>
         <div class="col-sm-12">
-            <h1 class="display-3">Contacts</h1>
+            <h1 class="display-3">{{__('common.contacts')}}</h1>
             <div class="d-flex justify-content-between my-3">
-                <a href="{{ route('contacts.create').'?page=' . $contacts->currentPage()}}" class="btn btn-primary">New contact</a>
-                <a href="{{ route('home')}}" class="btn btn-light">Back</a>
+                <a href="{{ route('contacts.create').'?page=' . $contacts->currentPage()}}" class="btn btn-primary">{{__('common.newContact')}}</a>
+                <a href="{{ route('home')}}" class="btn btn-light">{{__('common.back')}}</a>
             </div>
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <td>No</td>
-                        <td>Name</td>
-                        <td>Email</td>
-                        <td>Job Title</td>
-                        <td>City</td>
-                        <td>Country</td>
-                        <td colspan=2>Actions</td>
+                        <td>{{__('common.tableNo')}}</td>
+                        <td>{{__('common.Name')}}</td>
+                        <td>{{__('common.email')}}</td>
+                        <td>{{__('common.jobTitle')}}</td>
+                        <td>{{__('common.city')}}</td>
+                        <td>{{__('common.country')}}</td>
+                        <td colspan=2>{{__('common.actions')}}</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -40,20 +40,20 @@
                         <td>{{$contact->city}}</td>
                         <td>{{$contact->country}}</td>
                         <td>
-                            <a href="{{ route('contacts.edit', $contact->id).'?page=' . $contacts->currentPage()}}" class="btn btn-primary">Edit</a>
+                            <a href="{{ route('contacts.edit', $contact->id).'?page=' . $contacts->currentPage()}}" class="btn btn-primary">{{__('common.edit')}}</a>
                         </td>
                         <td>
                             <form action="{{ route('contacts.destroy', $contact->id).'?page=' . $contacts->currentPage()}}" method="post">
                                 @csrf
                                 @method('DELETE')
-                                <button class="btn btn-danger" type="submit">Delete</button>
+                                <button class="btn btn-danger" type="submit">{{__('common.delete')}}</button>
                             </form>
                         </td>
                     </tr>
                     @endforeach
                     @else
                     <tr>
-                        <td colspan="8">There are no data.</td>
+                        <td colspan="8">{{__('common.noData')}}</td>
                     </tr>
                     @endif
                 </tbody>

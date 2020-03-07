@@ -48,10 +48,10 @@
                         <!-- Authentication Links -->
                         @guest
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            <a class="nav-link" href="{{ route('login') }}">{{ __('layout.login') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            <a class="nav-link" href="{{ route('register') }}">{{ __('layout.register') }}</a>
                         </li>
                         @endguest
                         @auth
@@ -62,7 +62,7 @@
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
+                                    {{ __('layout.logout') }}
                                 </a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -100,7 +100,7 @@
                     <li class="treeview">
                         <a href="{{ route('users.index') }}">
                             <i class="fa fa-files-o"></i>
-                            <span>Manage User</span>
+                            <span>{{ __('layout.manageUser') }}</span>
                             <!-- <span class="pull-right-container">
                                 <span class="label label-primary pull-right">4</span>
                             </span> -->
@@ -109,32 +109,32 @@
                     <li class="treeview">
                         <a href="{{ route('roles.index') }}">
                             <i class="fa fa-files-o"></i>
-                            <span>Manage Role</span>
+                            <span>{{ __('layout.manageRole') }}</span>
                         </a>
                     </li>
                     <li class="treeview">
                         <a href="{{ route('products.index') }}">
                             <i class="fa fa-files-o"></i>
-                            <span>Manage Product</span>
+                            <span>{{ __('layout.manageProduct') }}</span>
                         </a>
                     </li>
                     @endif
                     <li class="treeview">
                         <a href="{{ route('contacts.index') }}">
                             <i class="fa fa-files-o"></i>
-                            <span>Manage Contact</span>
+                            <span>{{ __('layout.manageContact') }}</span>
                         </a>
                     </li>
                     <li class="treeview">
                         <a href="{{ route('file') }}">
                             <i class="fa fa-files-o"></i>
-                            <span>File Upload</span>
+                            <span>{{ __('layout.fileUpload') }}</span>
                         </a>
                     </li>
                     <li class="treeview">
                         <a href="{{ route('email') }}">
                             <i class="fa fa-files-o"></i>
-                            <span>Contact</span>
+                            <span>{{ __('layout.contact') }}</span>
                         </a>
                     </li>
                 </ul>

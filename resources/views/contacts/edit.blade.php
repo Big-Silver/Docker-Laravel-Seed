@@ -3,7 +3,7 @@
 @section('content')
 <div class="row">
     <div class="col-sm-8 offset-sm-2 margin-nav">
-        <h1 class="display-3">Update a contact</h1>
+        <h1 class="display-3">{{__('common.updateContact')}}</h1>
 
         @if ($errors->any())
         <div class="alert alert-danger alert-block">
@@ -21,33 +21,33 @@
             @csrf
             <div class="form-group">
 
-                <label for="first_name">First Name:</label>
+                <label for="first_name">{{__('common.firstName')}}:</label>
                 <input type="text" class="form-control" name="first_name" value={{ $contact->first_name }} />
             </div>
 
             <div class="form-group">
-                <label for="last_name">Last Name:</label>
+                <label for="last_name">{{__('common.LastName')}}:</label>
                 <input type="text" class="form-control" name="last_name" value={{ $contact->last_name }} />
             </div>
 
             <div class="form-group">
-                <label for="email">Email:</label>
+                <label for="email">{{__('common.email')}}:</label>
                 <input type="text" class="form-control" name="email" value={{ $contact->email }} />
             </div>
             <div class="form-group">
-                <label for="city">City:</label>
+                <label for="city">{{__('common.city')}}:</label>
                 <input type="text" class="form-control" name="city" value={{ $contact->city }} />
             </div>
             <div class="form-group">
-                <label for="country">Country:</label>
+                <label for="country">{{__('common.country')}}:</label>
                 <input type="text" class="form-control" name="country" value={{ $contact->country }} />
             </div>
             <div class="form-group">
-                <label for="job_title">Job Title:</label>
+                <label for="job_title">{{__('common.jobTitle')}}:</label>
                 <input type="text" class="form-control" name="job_title" value={{ $contact->job_title }} />
             </div>
-            <button type="submit" class="btn btn-primary">Update</button>
-            <a href="{{'/contacts'.'?page=' . $contact->page}}" class="btn btn-light ml-3">Cancel</a>
+            <button type="submit" class="btn btn-primary">{{__('common.updateContact')}}</button>
+            <a href="{{'/contacts'.'?page=' . $contact->page}}" class="btn btn-light ml-3">{{__('common.cancel')}}</a>
         </form>
     </div>
 </div>
